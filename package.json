@@ -30,8 +30,8 @@
   ],
   "scripts": {
     "build": "next build",
-    
-    "build-migrate-db": "bun run db:migrate",
+    "postbuild": "npm run build-sitemap && npm run build-migrate-db",
+    "build-migrate-db": "MIGRATION_DB=1 tsx ./scripts/migrateServerDB/index.ts",
     "build-sitemap": "tsx ./scripts/buildSitemapIndex/index.ts",
     "build:analyze": "ANALYZE=true next build",
     "build:docker": "DOCKER=true next build && npm run build-sitemap",
